@@ -39,11 +39,11 @@
                     
                     <div class="text-center mt-5">
                         {!! Form::submit('登録', ['class' => 'btn btn-primary']) !!}
+                        <div class="mt-5">
+                            {!! link_to_route('login.get', '会員登録お済みの方（ログイン）', ['class' => 'nav-link']) !!}
+                        </div>
                     </div>
                     
-                    <div>
-                        <a href="#">ログインページへのリンク</a>
-                    </div>
                     
             </div>
             
