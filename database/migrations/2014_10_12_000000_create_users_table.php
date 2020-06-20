@@ -21,6 +21,12 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+            
+            // 追加したカラム
+            $table->string('user_image_url', 100)->default('images/initial-icon.jpg');
+            $table->string('introduction')->default('よろしく')->nullable();
+            $table->integer('gender');
+            $table->integer('height');
         });
     }
 

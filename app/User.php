@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'gender', 'height'
     ];
 
     /**
@@ -36,4 +36,22 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public static $genders = [
+            0 => '不明',
+            1 => '男性',
+            2 => '女性',
+            ];
+
+    public static function getGenderLabel($gender_code) {
+        $ret = null;
+
+        if (!empty(self::$genders[$gender_code])) {
+            $ret = self::$genders[$gender_code];
+        }
+
+        return $ret;
+
+    }
+    
 }
