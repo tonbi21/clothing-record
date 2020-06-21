@@ -38,9 +38,9 @@ class User extends Authenticatable
     ];
 
     public static $genders = [
-            0 => '不明',
-            1 => '男性',
-            2 => '女性',
+            0 => 'Ather',
+            1 => 'Men',
+            2 => 'Woman',
             ];
 
     public static function getGenderLabel($gender_code) {

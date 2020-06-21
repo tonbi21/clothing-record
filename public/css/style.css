@@ -1,3 +1,28 @@
+@charset "UTF-8";
+
+body{
+    background-color: #e6e6e6 !important;
+}
+
+
+
+
+
 .title{
     font-family: 'Suez One', serif;
 }
+
+.users{
+    border: 1px solid;
+}
+
+.search-category{
+    border: 1px solid;
+}
+
+
+.widthMax{
+    background-color: white;
+    margin: 0 calc(50% - 50vw);
+}
+
