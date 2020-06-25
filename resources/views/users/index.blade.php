@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="row">
-        <div class="col-md-2 offset-md-1 search-category">
+    <div class="row mt-5">
+        <div class="col-md-2 offset-md-1 frame">
             <h2>性別</h2>
             <ul>
                 <li>All</li>

@@ -10,22 +10,23 @@ class UsersController extends Controller
 {
     public function index(){
         $users = User::orderBy('id', 'desc')->paginate(30);
-        
+       
         return view('users.index', [
-            'users' => $users
+            'users' => $users,
+            
         ]);
     }
     
     public function show($id){
-        $user = User::findOrFail($id);
+        $user = User::find($id);
+        $user->loadRelationshipCounts();
+        $coordinates = $user->coordinates()->orderBy('id', 'desc')->paginate(92);
         return view('users.show', [
-            'user' => $user
+            'user' => $user,
+            'coordinates' => $coordinates
         ]);
     }
     
-    public function mypage(){
-        
-    }
     
     public function edit(){
         
@@ -36,6 +37,10 @@ class UsersController extends Controller
     }
     
     public function destroy(){
+        
+    }
+    
+    public function gender(){
         
     }
     

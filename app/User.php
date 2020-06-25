@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'gender', 'height'
+        'name', 'email', 'password', 'gender', 'height', 'user_image_url'
     ];
 
     /**
@@ -38,11 +38,11 @@ class User extends Authenticatable
     ];
 
     public static $genders = [
-            0 => 'Ather',
-            1 => 'Men',
-            2 => 'Woman',
+            0 => 'Men',
+            1 => 'Woman',
+            2 => 'Ather',
             ];
-
+            
     public static function getGenderLabel($gender_code) {
         $ret = null;
 
@@ -53,5 +53,20 @@ class User extends Authenticatable
         return $ret;
 
     }
+     
+    //このユーザが所有する投稿。 
+    public function coordinates(){
+        return $this->hasMany(Coordinate::class);
+    }
+  
+    
+    
+    //ユーザーに関するモデルの数を取得
+    public function loadRelationshipCounts(){
+        $this->loadCount('coordinates');
+    }
+     
+            
+
     
 }

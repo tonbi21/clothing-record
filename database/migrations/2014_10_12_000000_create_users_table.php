@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->timestamps();
             
             // 追加したカラム
-            $table->string('user_image_url', 100)->default('images/initial-icon.jpg');
+            $table->string('user_image_url', 100)->default('images/initial-icon.jpeg');
             $table->string('introduction')->default('よろしく')->nullable();
             $table->integer('gender');
             $table->integer('height');
