@@ -18,10 +18,15 @@ class CreateItemsTable extends Migration
             $table->timestamps();
             
             // 追加分
-            $table->
-            $table->
-            $table->
-            $table->
+            $table->unsignedBigInteger('user_id');
+            $table->string('name', 100);
+            $table->string('item_image_url', 100);
+            $table->string('brand', 30);
+            $table->integer('category_id');
+            $table->integer('gender');
+            
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            
         });
     }
 

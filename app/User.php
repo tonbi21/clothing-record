@@ -58,15 +58,109 @@ class User extends Authenticatable
     public function coordinates(){
         return $this->hasMany(Coordinate::class);
     }
+    
+    //このユーザが所有するアイテム。 
+    public function items(){
+        return $this->hasMany(Item::class);
+    }
   
+    //このユーザがフォロー中のユーザ。（ Userモデルとの関係を定義）
+    public function followings() {
+        return $this->belongsToMany(User::class, 'user_follow', 'user_id', 'follow_id')->withTimestamps();
+    }        
+    
+    public function followers() {
+        return $this->belongsToMany(User::class, 'user_follow', 'follow_id', 'user_id')->withTimestamps();
+    }
+    
+    
+    
+    // このユーザーがお気に入りしている投稿
+    public function favorites() {
+        return $this->belongsToMany(Coordinate::class, 'favorites', 'user_id', 'coordinate_id')->withTimestamps();
+    }
     
     
     //ユーザーに関するモデルの数を取得
     public function loadRelationshipCounts(){
-        $this->loadCount('coordinates');
+        $this->loadCount(['coordinates', 'items', 'followings', 'followers', 'favorites']);
     }
-     
-            
-
     
+    
+    public function follow($userId){
+        // すでにフォローしているかの確認
+        $exist = $this->is_following($userId);
+        // 相手が自分自身かどうかの確認
+        $its_me = $this->id == $userId;
+        
+        if($exist || $its_me){
+            // すでにフォローしていれば何もしない
+            return false;
+        }else{
+            // 未フォローであればフォローする
+            $this->followings()->attach($userId);
+            return true;
+        }
+    } 
+    
+    public function unfollow($userId){
+        // すでにフォローしているかの確認
+        $exist = $this->is_following($userId);
+        // 相手が自分自身かどうかの確認
+        $its_me = $this->id == $userId;
+        
+        if($exist && !$its_me){
+            // すでにフォローしていればフォローを外す
+            $this->followings()->detach($userId);
+            return true;
+        }else{
+            // 未フォローであれば何もしない
+            return false;
+        }
+    }
+    
+    public function is_following($userId){
+        return $this->followings()->where('follow_id', $userId)->exists();
+    }
+    
+    public function feed_coordinates(){
+        $userIds = $this->followings()->pluck('users.id')->toArray();
+        $userIds[] = $this->id;
+        return Coordinate::whereIn('user_id', $userIds);
+    }
+    
+    
+    public function favorite($coordinateId){
+        // すでにお気に入りしているかの確認
+        $exist = $this->is_favorite($coordinateId);
+        
+        if($exist){
+            // すでにお気に入りしていれば何もしない
+            return false;
+        }else{
+            // まだお気に入りしてなければお気に入りする
+            $this->favorites()->attach($coordinateId);
+            return true;
+        }
+    }
+    
+    public function unfavorite($coordinateId){
+        // すでにお気に入りしているかの確認
+        $exist = $this->is_favorite($coordinateId);
+        
+        if($exist){
+            // すでにお気に入りしていればお気に入りをはずす。
+            $this->favorites()->detach($coordinateId);
+            return true;
+        }else{
+            // まだお気に入りしてなければ何もしない
+            return false;
+        }
+    }
+    
+    public function is_favorite($coordinateId){
+        return $this->favorites()->where('coordinate_id', $coordinateId)->exists();
+    }
+    
+   
 }

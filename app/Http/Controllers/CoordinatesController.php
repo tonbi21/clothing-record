@@ -7,6 +7,7 @@ use DateTime;
 use DateTimeZone;
 use App\User;
 use App\Coordinate;
+use App\CoordinateItem;
 use Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -14,7 +15,22 @@ class CoordinatesController extends Controller
 {
     public function index(){
         $data = [];
-        $coordinates = Coordinate::orderBy('id', 'desc')->paginate(99);
+        $data_timeline = [];
+        // $coordinates = Coordinate::orderBy('id', 'desc')->paginate(60);
+        
+        // お気に入りが多い順に並べる
+        $coordinates = Coordinate::withCount('favorite_users')->orderBy('favorite_users_count', 'desc')->paginate(60);
+        
+        if (\Auth::check()) {
+            // 認証済みユーザ（閲覧者）を取得
+            $user = \Auth::user();
+            // ユーザとフォロー中ユーザの投稿の一覧を作成日時の降順で取得
+            $timeline_coordinates = $user->feed_coordinates()->orderBy('created_at', 'desc')->paginate(60);
+            
+            
+            $data_timeline = ['timeline_coordinates' => $timeline_coordinates];
+        }
+
         
         // ここから東京の天気の変数
         
@@ -98,23 +114,35 @@ class CoordinatesController extends Controller
                 'o_temp_min' => $o_temp_min,
                 'o_temp_max' => $o_temp_max,
             ];
+            
+            
            
-        return view('welcome', $data);
+        return view('welcome', $data, $data_timeline);
         
     }
     
     public function show($id){
         $coordinate = Coordinate::find($id);
+        $items = $coordinate->items;
+        $user = $coordinate->user;
+        $coordinate->loadRelationshipCounts();
         
         return view('coordinates.show', [
-            'coordinate' => $coordinate
+            'coordinate' => $coordinate,
+            'items' =>$items,
+            'user' => $user,
         ]);
     }
     
     public function create(){
         $coordinate = new Coordinate;
+        $items = \Auth::user()->items;
         
-         return view('coordinates.create', ['coordinate' => $coordinate]);
+        
+        return view('coordinates.create', [
+            'coordinate' => $coordinate,
+            'items' => $items,
+        ]);
     }
     
     public function store(Request $request){
@@ -122,7 +150,8 @@ class CoordinatesController extends Controller
         $validator = Validator::make($request->all(), [
             'file' => 'required|max:10240|mimes:jpeg,gif,png',
             'coordinate_type' => 'required|integer',
-            'content' => 'required|max:500'
+            'content' => 'required|max:500',
+           
         ]);
         
         if($validator->fails()){
@@ -133,20 +162,34 @@ class CoordinatesController extends Controller
         // dd($file);
         $path = Storage::disk('s3')->putFile('coordinates/'.\Auth::id(), $file, 'public');
         
-        Coordinate::create([
+        $items = $request->items;
+        
+        
+        $coordinate = Coordinate::create([
             'user_id' => \Auth::user()->id,
             'coordinate_image_url' => $path,
             'content' => $request->content,
-            'coordinate_type' => $request->coordinate_type
-        ]);    
+            'coordinate_type' => $request->coordinate_type,
+        ]); 
         
+        // dd($items);
+        if($items[0] !== null){
+            for($i = 0; $i < count($items); $i ++) {
+                $coordinate->items()->attach([
+                    $i => $items[$i]
+                ]);
+            }
+        }
          return redirect('/users/' . \Auth::id());
             
     }
     
     public function edit(Coordinate $coordinate){
+        $items = \Auth::user()->items;
+        
         return view('coordinates.edit', [
-            'coordinate' => $coordinate
+            'coordinate' => $coordinate,
+            'items' => $items
         ]);
     }
     
@@ -172,6 +215,20 @@ class CoordinatesController extends Controller
         $coordinate->coordinate_type = $request->coordinate_type;
         $coordinate->content = $request->content;
         $coordinate->save();
+        
+        $items = $request->items;
+        
+        if($items[0] !== null){
+            // コーディネートに使っていたアイテムをリセット
+            $coordinate->items()->detach();
+            
+            // コーディネートに使ったアイテムを保存
+            for($i = 0; $i < count($items); $i ++) {
+                $coordinate->items()->attach([
+                    $i => $items[$i]
+                ]);
+            }
+        }
         
         return redirect('users/' . $coordinate->user->id);
     }

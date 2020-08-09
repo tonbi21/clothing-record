@@ -15,6 +15,21 @@ class Coordinate extends Model
         return $this->belongsTo(User::class);
     }
     
+    // このコーディネートに使っているアイテム
+    public function items()
+    {
+        return $this->belongsToMany(Item::class, 'coordinate_item', 'coordinate_id', 'item_id');
+    }
+    
+    // このコーディネートをお気に入りしているユーザー
+    public function favorite_users() {
+        return $this->belongsToMany(User::class, 'favorites', 'coordinate_id', 'user_id')->withTimestamps();
+    }
+    
+    public function loadRelationshipCounts(){
+        $this->loadCount(['items', 'favorite_users']);
+    }
+    
     //コーディネートタイプラベルを定義
     public static $coordinate_types = [
             0 => 'Spring',
@@ -37,5 +52,7 @@ class Coordinate extends Model
     
     
     
+    
+   
     
 }

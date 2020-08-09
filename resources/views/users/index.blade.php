@@ -2,17 +2,10 @@
 
 @section('content')
     <div class="row mt-5">
-        <div class="col-md-2 offset-md-1 frame">
-            <h2>性別</h2>
-            <ul>
-                <li>All</li>
-                <li>Men</li>
-                <li>Woman</li>
-                <li>Ather</li>
-            </ul>
-        </div>
+        <!--サイドバー-->
+        @include('users.side_bar')
         
-        <div class="col-md-8">
+        <div class="col-lg-8">
             @foreach($users as $user)
                 @include('users.users')
             @endforeach

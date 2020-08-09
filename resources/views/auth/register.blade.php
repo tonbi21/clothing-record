@@ -1,54 +1,56 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="center jumbotron p-5">
-        <div class="row">
-            <div class="col-md-6">
-                <img src="images/closet.jpeg" alt="トップページイメージ" class="w-100">
-            </div>
-            <div class="col-md-4 offset-md-1">
-                <h3 class="mb-5 text-center">新規会員登録</h3>
-                {!! Form::open(['route' => 'signup.post']) !!}
-                    <div class="form-group">
-                        {!! Form::label('name', 'ユーザーネーム') !!}
-                        {!! Form::text('name', old('name'), ['class' => 'form-control']) !!}
-                    </div>
-                    <div class="form-group">
-                        {!! Form::label('email', 'メールアドレス') !!}
-                        {!! Form::email('email', old('email'), ['class' => 'form-control']) !!}
-                    </div>
-                    <div class="form-group">
-                        {!! Form::label('password', 'パスワード') !!}
-                        {!! Form::password('password', ['class' => 'form-control']) !!}
-                    </div>
-                    <div class="form-group">
-                        {!! Form::label('password_confirmation', 'パスワードの確認') !!}
-                        {!! Form::password('password_confirmation', ['class' => 'form-control']) !!}
-                    </div>
-                    
-                    <div class="form-group">
-                        {!! Form::label('gender', '性別') !!}
-                        {!! Form::select('gender', App\User::$genders, 1, ['class' => 'form-control']) !!}
-                    </div>
-                    
-                    
-                    <div class="form-group">
-                        {!! Form::label('height', '身長') !!}
-                        {!! Form::selectRange('height', 120, 250, 170, ['class' => 'form-control']) !!}
-                    </div>
-                    
-                    <div class="text-center mt-5">
-                        {!! Form::submit('登録', ['class' => 'btn btn-primary']) !!}
-                        <div class="mt-5">
-                            {!! link_to_route('login', '会員登録お済みの方（ログイン）', ['class' => 'nav-link']) !!}
-                        </div>
-                    </div>
-                    
-                    
+<div class="jumbotron mt-5">
+    
+    <div class="row">
+        <div class="col-lg-5 offset-lg-1 d-none d-lg-block">
+            <img src="images/closet.jpeg" alt="closet-image" class="closet-image">
+        </div>
+        
+        <div class="col-lg-5 col-10 offset-1">
+            <div class="text-center">
+                <h1>Sign up</h1>
             </div>
             
+            {!! Form::open(['route' => 'signup.post']) !!}
+                <div class="form-group">
+                    {!! Form::label('name', 'ユーザーネーム') !!}
+                    {!! Form::text('name', old('name'), ['class' => 'form-control']) !!}
+                </div>
+
+                <div class="form-group">
+                    {!! Form::label('email', 'アドレス') !!}
+                    {!! Form::email('email', old('email'), ['class' => 'form-control']) !!}
+                </div>
+
+                <div class="form-group">
+                    {!! Form::label('password', 'パスワード') !!}
+                    {!! Form::password('password', ['class' => 'form-control']) !!}
+                </div>
+
+                <div class="form-group">
+                    {!! Form::label('password_confirmation', 'パスワード確認') !!}
+                    {!! Form::password('password_confirmation', ['class' => 'form-control']) !!}
+                </div>
+                
+                <div class="form-group">
+                    {!! Form::label('gender', '性別') !!}
+                    {!! Form::select('gender', App\User::$genders, 0, ['class' => 'form-control']) !!}
+                </div>
+                            
+                <div class="form-group">
+                    {!! Form::label('height', '身長') !!}
+                    {!! Form::selectRange('height', 120, 250, 170, ['class' => 'form-control']) !!}
+                </div>                
+
+                {!! Form::submit('Sign up', ['class' => 'btn btn-primary btn-block']) !!}
+            {!! Form::close() !!}
         </div>
     </div>
-
+</div>
+    
+        
+    
 
 @endsection
