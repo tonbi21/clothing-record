@@ -61,7 +61,7 @@ class ItemsController extends Controller
             'name' => $request->name,
         ]);    
         
-         return redirect('/users/' . \Auth::id() . '/myitems');
+         return redirect('/user/' . \Auth::id() . '/myitems');
     }
     
     public function edit(Item $item){
@@ -97,7 +97,7 @@ class ItemsController extends Controller
        $item->name = $request->name;
        $item->save();
         
-        return redirect('items/' . $item->id);
+        return redirect('/items/' . $item->id);
     }
     
     public function destroy($id){

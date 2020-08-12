@@ -230,7 +230,7 @@ class CoordinatesController extends Controller
             }
         }
         
-        return redirect('users/' . $coordinate->user->id);
+        return redirect('/coordinates/' . $coordinate->id);
     }
     
     public function destroy($id){

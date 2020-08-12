@@ -38,7 +38,7 @@
                 <h4>{{ $coordinate->user->name }}のコーディネート</h4>
                 <p>モデル情報： {{ $coordinate->user->height }}cm / {{ $coordinate->user->getGenderLabel($coordinate->user->gender) }}</p>
                 <hr>
-                <p>{{  $coordinate->content }}</p>
+                <p>{!! nl2br($coordinate->content) !!}</p>
                 <hr>
                 <p>
                     <!--ログインユーザーならお気に入りボタン表示-->
