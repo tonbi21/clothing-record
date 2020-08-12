@@ -31,12 +31,12 @@
     </div>
     
     <div class="row mt-5">
-        <div class="col-lg-6 offset-lg-1 col-md-6">
+        <div class="col-lg-6 offset-lg-1 col-md-8 offset-md-2 col-10 offset-1">
             <img src= "{{ Storage::disk('s3')->url($item->item_image_url) }}" alt="coordinate-image" class="img-square-show">
-            
         </div>
-        <div class="col-lg-5 col-md-6 mb-5">
+        <div class="col-lg-4 offset-lg-0 col-md-6 col-md-8 offset-md-2 col-10 offset-1 mb-5">
             <div class="frame p-4">
+                
                 <p>ブランド：{{ $item->brand }}</p>
                 <h4>{{ $item->name }}</h4>
             </div>

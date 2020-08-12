@@ -2,13 +2,19 @@
 
 @section('content')
     <div class="row mt-5">
-        <div class="col-md-3">
-            {!! link_to_route('users.edit', 'プロフィール変更', ['user' => $user->id], ['class' => 'nav-link btn btn-dark mb-5']) !!}
-            {!! link_to_route('users.withdrawal', '退会について', ['user' => $user->id], ['class' => 'nav-link btn btn-secondary mb-5']) !!}
+        <div class="col-lg-3">
+            <div class="row">
+                <div class="col-lg-12 col-6">
+                    {!! link_to_route('users.edit', 'プロフィール変更', ['user' => $user->id], ['class' => 'nav-link btn btn-dark mb-5']) !!}
+                </div>
+                <div class="col-lg-12 col-6">
+                    {!! link_to_route('users.withdrawal', '退会について', ['user' => $user->id], ['class' => 'nav-link btn btn-secondary mb-5']) !!}
+                </div>
+            </div>
         </div>
         
         <!--ユーザー編集フォーム-->
-        <div class="col-md-8">
+        <div class="col-lg-8">
             {!! Form::open(['route' => ['users.update', ['user' => $user->id]], 'method' => 'put', 'files' => true]) !!}
                 <div class="card">
                     <div class="card-header">

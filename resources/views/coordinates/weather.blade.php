@@ -8,22 +8,22 @@
                 
                 <!--大阪の天気-->
                 <div class="col-6">
-                    <a type="button" data-toggle="modal" data-target="#osakaModal">
-                        <img src="images/osaka.jpg" class="card-img" alt="osaka-weather">
+                    <div type="button" data-toggle="modal" data-target="#osakaModal">
+                        <img src="images/osaka.jpg" class="card-img" alt="osaka-weather" data-toggle="modal" data-target="#osakaModal">
                         <div class="card-img-overlay">
                             <h1 class="card-title">Osaka</h1>
                         </div>
-                    </a>
+                    </div>
                 </div>
                 
                 <!--東京の天気-->
                 <div class="col-6">
-                    <a type="button" data-toggle="modal" data-target="#tokyoModal">
+                    <div type="button" data-toggle="modal" data-target="#tokyoModal">
                         <img src="images/tokyo.jpg" class="card-img" alt="tokyo-weather">
                         <div class="card-img-overlay">
                             <h1 class="card-title">Tokyo</h1>
                         </div>
-                    </a>
+                    </div>
                 </div>
                 
             </div>

@@ -15,7 +15,7 @@
     <!--投稿した画像-->
     <div class="row">
         @foreach($coordinates as $coordinate)
-            <div class="col-lg-3 col-md-4 col-6 mb-4">
+            <div class="col-lg-3 col-md-4 col-sm-6 offset-sm-0 col-8 offset-2 mb-4">
                 <div class="card">
                     <a href="{{ route('coordinates.show', ['coordinate' => $coordinate->id]) }}">
                         <img src= "{{ Storage::disk('s3')->url($coordinate->coordinate_image_url) }}" alt="coordinate-image" class="img-square">

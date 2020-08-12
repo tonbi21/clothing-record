@@ -5,7 +5,7 @@
     
 
     <ul class="nav nav-pills nav-fill row mt-5 mb-5">
-        <li class="nav-item col-md-3 offset-md-5">
+        <li class="nav-item col-lg-2 offset-lg-5 col-sm-4 offset-sm-4 col-6 offset-3">
             <p class="nav-link btn btn-dark">{{ App\Coordinate::getCoordinateLabel($coordinate_type) }}</p>
         </li>
     </ul>
@@ -14,10 +14,10 @@
         <!--サイドバー-->
         @include('users.side_bar')
         
-        <div class="col-md-8">
+        <div class="col-lg-8">
             <div class="row">
                 @foreach($coordinates as $coordinate)
-                    <div class="col-md-4 mb-4">
+                    <div class="col-lg-4 offset-md-0 col-md-6 col-8 offset-2 mb-4">
                         <div class="card">
                             <a href="{{ route('coordinates.show', ['coordinate' => $coordinate->id]) }}">
                                 <img src= "{{ Storage::disk('s3')->url($coordinate->coordinate_image_url) }}" alt="coordinate-image" class="img-square">

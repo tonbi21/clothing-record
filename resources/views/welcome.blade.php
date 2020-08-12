@@ -6,12 +6,16 @@
     @include('coordinates.weather')
     
     <ul class="nav nav-pills nav-fill row mt-5 mb-5">
-        <li class="nav-item col-lg-2 offset-lg-5 col-sm-4 offset-sm-2 col-6">
-            <a class="nav-link btn btn-dark switching recommendation" href="#">おすすめ</a>
-        </li>
         @if(Auth::check())
+            <li class="nav-item col-lg-2 offset-lg-5 col-sm-4 offset-sm-2 col-6">
+                <a class="nav-link btn btn-dark switching recommendation" href="#">おすすめ</a>
+            </li>
             <li class="nav-item col-lg-2 col-sm-4 col-6">
                 <a class="nav-link btn btn-outline-secondary switching timeline" href="#">タイムライン</a>
+            </li>
+        @else
+            <li class="nav-item col-lg-2 offset-lg-5 col-sm-4 offset-sm-4 col-6 offset-3">
+                <a class="nav-link btn btn-dark switching recommendation" href="#">おすすめ</a>
             </li>
         @endif
     </ul>
@@ -23,7 +27,7 @@
         <div class="col-lg-8">
             <div class="row recommendation-switching">
                 @foreach($coordinates as $coordinate)
-                    <div class="col-md-4 col-6 mb-4">
+                    <div class="col-lg-4 offset-md-0 col-md-6 col-8 offset-2 mb-4">
                         <div class="card coordinate-card">
                             <a href="{{ route('coordinates.show', ['coordinate' => $coordinate->id]) }}">
                                 <img src= "{{ Storage::disk('s3')->url($coordinate->coordinate_image_url) }}" alt="coordinate-image" class="img-square">

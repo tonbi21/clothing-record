@@ -30,10 +30,10 @@
         </div>
     </div>
     <div class="row mt-5">
-        <div class="col-lg-6 offset-lg-1 col-md-6">
+        <div class="col-lg-6 offset-lg-1 col-md-8 offset-md-2 col-10 offset-1">
             <img src= "{{ Storage::disk('s3')->url($coordinate->coordinate_image_url) }}" alt="coordinate-image" class="img-square-show">
         </div>
-        <div class="col-lg-5 col-md-6 mb-5">
+        <div class="col-lg-4 offset-lg-0 col-md-6 col-md-8 offset-md-2 col-10 offset-1 mb-5">
             <div class="frame p-4">
                 <h4>{{ $coordinate->user->name }}のコーディネート</h4>
                 <p>モデル情報： {{ $coordinate->user->height }}cm / {{ $coordinate->user->getGenderLabel($coordinate->user->gender) }}</p>
@@ -52,7 +52,7 @@
                     @endif
                 </p>
                 
-                <p class="float-right">{{ $coordinate->created_at->format('Y/m/d H:i:s') }}</p>
+                <p class="float-right">{{ $coordinate->created_at->format('Y/m/d H:i') }}</p>
             </div>
             
             <div class="frame p-4 mt-5">
@@ -63,7 +63,7 @@
                             <img src= "{{ Storage::disk('s3')->url($item->item_image_url) }}" alt="アイテム画像" class="wearing-item">
                         </a>
                         <div class="media-body ml-3">
-                            <h4 class="mt-0">{{ $item->brand }}</h4>
+                            <h4>{{ $item->brand }}</h4>
                             <p>{{ $item->name }}</p>
                             <p>{{ $item->getCategoryLabel($item->category_id) }}</p>
                         </div>

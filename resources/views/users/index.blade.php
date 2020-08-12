@@ -5,7 +5,7 @@
         <!--サイドバー-->
         @include('users.side_bar')
         
-        <div class="col-lg-8">
+        <div class="col-lg-8 col-10 offset-1">
             @foreach($users as $user)
                 @include('users.users')
             @endforeach
