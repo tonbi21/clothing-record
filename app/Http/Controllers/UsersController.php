@@ -142,9 +142,5 @@ class UsersController extends Controller
             'coordinates' => $favorites,
         ]);
     }
-    
-   
-    
-    
-    
+
 }

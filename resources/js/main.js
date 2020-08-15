@@ -5,11 +5,10 @@ $('#add-form').on('click', function(){
 })
 
 
-// おすすめ投稿とタイムラインの切り替え
+    // おすすめ投稿とタイムラインの切り替え
 $('.switching').on('click', function(e){
     if($(this).hasClass('timeline')){
         
-        e.preventDefault();
         
         // ナブの色を変える
         $('.timeline')
@@ -28,8 +27,6 @@ $('.switching').on('click', function(e){
             
     }else if($(this).hasClass('recommendation')){
         
-        e.preventDefault();
-        
         // ナブの色を変える
         $('.recommendation')
             .removeClass('btn-outline-secondary')
@@ -46,10 +43,13 @@ $('.switching').on('click', function(e){
             .addClass('d-none');
     }
 });
+    
 
 
 // ajax通信
 $(function(){
+    
+   
     // お気に入りボタン押した時の処理
     $('button').on('click', function(e) {
 
@@ -58,7 +58,7 @@ $(function(){
         e.preventDefault();
         
         
-        if($('#favorite-button-' + id).hasClass('favorite')){
+        if($('.favorite-button-' + id).hasClass('favorite')){
             $.ajax({
                 headers: {
                     // POSTのときはトークンの記述がないと"419 (unknown status)"になるので注意
@@ -77,20 +77,21 @@ $(function(){
                 console.log("お気に入りボタンが押されました。");
 
                 if(results === true){
-                    $('#favorite-button-' + id)
+                    $('.favorite-button-' + id)
                         .removeClass('favorite')
                         .addClass('unfavorite');
+                        console.log('呼ばれてないよ');
                         
-                    $('#favorite-button-' + id)
+                    $('.favorite-button-' + id)
                         .children()
                         .remove();
                     
-                     $('#favorite-button-' + id)
+                     $('.favorite-button-' + id)
                         .append('<i class="fas fa-bookmark fa-lg"></i>')
                 }
             });
             
-        }else if($('#favorite-button-' + id).hasClass('unfavorite')){
+        }else if($('.favorite-button-' + id).hasClass('unfavorite')){
              $.ajax({
                 headers: {
                     // POSTのときはトークンの記述がないと"419 (unknown status)"になるので注意
@@ -107,15 +108,16 @@ $(function(){
                 console.log("お気に入り解除ボタンが押されました。");
 
                 if(results === true){
-                    $('#favorite-button-' + id)
+                    $('.favorite-button-' + id)
                         .removeClass('unfavorite')
                         .addClass('favorite');
+                        console.log('呼ばれてないよ');
                         
-                    $('#favorite-button-' + id)
+                    $('.favorite-button-' + id)
                         .children()
                         .remove();
                     
-                     $('#favorite-button-' + id)
+                     $('.favorite-button-' + id)
                         .append('<i class="far fa-bookmark fa-lg"></i>')
                 }
             })

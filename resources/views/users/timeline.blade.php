@@ -29,11 +29,8 @@
                                             @include('favorites.favorite_button')
                                         @endif
                                     </div>
-                                    
                                 </li>
-                                
                             </ul>
-                            
                         </div>
                     </div>
                 @endforeach

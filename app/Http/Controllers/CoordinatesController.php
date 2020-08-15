@@ -113,7 +113,7 @@ class CoordinatesController extends Controller
                 'o_temp' => $o_temp,
                 'o_temp_min' => $o_temp_min,
                 'o_temp_max' => $o_temp_max,
-            ];
+        ];
             
             
            

@@ -29,8 +29,8 @@ Route::post('login', 'Auth\LoginController@login')->name('login.post');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 
 Route::group(['middleware' => ['auth']], function(){
+    Route::get('users/{user}/withdrawal', 'UsersController@withdrawal')->name('users.withdrawal'); //退会ページの表示
     Route::resource('users', 'UsersController', ['only' => ['edit', 'update', 'destroy']]);
-    Route::get('users/{user}/withdrawal', 'UsersController@withdrawal')->name('users.withdrawal');
     Route::resource('coordinates', 'CoordinatesController', ['only' => ['create', 'store', 'edit','update', 'destroy']]);
     Route::resource('items', 'ItemsController', ['only' => ['create', 'store', 'edit', 'update', 'destroy']]);
     
@@ -49,6 +49,7 @@ Route::group(['middleware' => ['auth']], function () {
     });
 });
 
+// ユーザーのマイアイテム、フォローユーザー、フォロワー、お気に入りコーディネート
 Route::group(['prefix' => 'user/{id}'], function () {
     Route::get('myitems', 'UsersController@myitems')->name('users.myitems');
     Route::get('followings', 'UsersController@followings')->name('users.followings');

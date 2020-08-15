@@ -45,14 +45,7 @@ class Coordinate extends Model
         if (!empty(self::$coordinate_types[$coordinate_code])) {
             $ret = self::$coordinate_types[$coordinate_code];
         }
-
         return $ret;
-
     }
-    
-    
-    
-    
-   
-    
+  
 }

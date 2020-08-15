@@ -7,6 +7,7 @@
     
     <ul class="nav nav-pills nav-fill row mt-5 mb-5">
         @if(Auth::check())
+            <!--おすすめ投稿とタイムラインの切り替え　ログインユーザーの表示-->
             <li class="nav-item col-lg-2 offset-lg-5 col-sm-4 offset-sm-2 col-6">
                 <a class="nav-link btn btn-dark switching recommendation" href="#">おすすめ</a>
             </li>
@@ -14,6 +15,7 @@
                 <a class="nav-link btn btn-outline-secondary switching timeline" href="#">タイムライン</a>
             </li>
         @else
+            <!--おすすめ投稿のみ表示　ゲストユーザーの表示-->
             <li class="nav-item col-lg-2 offset-lg-5 col-sm-4 offset-sm-4 col-6 offset-3">
                 <a class="nav-link btn btn-dark switching recommendation" href="#">おすすめ</a>
             </li>
