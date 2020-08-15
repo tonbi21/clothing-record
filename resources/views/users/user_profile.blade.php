@@ -1,4 +1,4 @@
-<div class="widthMax pt-4">
+<div class="widthMax pt-4 mb-5">
     <div class="row">
         
         <div class="media col-md-9 offset-md-2">
