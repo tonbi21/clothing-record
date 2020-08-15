@@ -7,7 +7,7 @@
 <div class="row">
     @include('users.nab_tabs')
     
-    <div class="create-coordinate offset-lg-5 offset-sm-4 offset-4 mt-5 mb-5">
+    <div class="create-coordinate text-center mt-5 mb-5">
         {!! link_to_route('items.create', 'アイテムを保管', ['type' => 'button'], ['class' => 'btn btn-primary btn-lg']) !!}
     </div>
     

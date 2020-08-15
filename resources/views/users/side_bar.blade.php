@@ -25,7 +25,7 @@
 
 
 
-<div class="col-6 offset-3 d-block d-lg-none frame categories mb-5 text-center">
+<div class="col-12 d-block d-lg-none frame categories mb-5 text-center">
     <h4 class="mt-2">コーディネート</h4>
     <h5 class="mt-2">性別</h5>
         <ul class="pl-0">

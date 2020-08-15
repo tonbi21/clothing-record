@@ -30,10 +30,20 @@
         </div>
     </div>
     <div class="row mt-5">
-        <div class="col-lg-6 offset-lg-1 col-md-8 offset-md-2 col-10 offset-1">
+        <!--外面幅lg以上-->
+        <div class="col-lg-6 offset-lg-1 d-none d-lg-block">
+            <img src= "{{ Storage::disk('s3')->url($coordinate->coordinate_image_url) }}" alt="coordinate-image" class="img-square-show-lg">
+        </div>
+        <!--画面幅md-->
+        <div class="col-sm-8 offset-sm-2 d-none d-sm-block d-lg-none">
+            <img src= "{{ Storage::disk('s3')->url($coordinate->coordinate_image_url) }}" alt="coordinate-image" class="img-square-show-sm">
+        </div>
+        <!--外面幅md未満-->
+        <div class="col-10 offset-1 d-block d-sm-none">
             <img src= "{{ Storage::disk('s3')->url($coordinate->coordinate_image_url) }}" alt="coordinate-image" class="img-square-show">
         </div>
-        <div class="col-lg-4 offset-lg-0 col-md-6 col-md-8 offset-md-2 col-10 offset-1 mb-5">
+        
+        <div class="col-lg-4 offset-lg-0 col-md-8 offset-md-2 col-10 offset-1 mb-5">
             <div class="frame p-4">
                 <h4>{{ $coordinate->user->name }}のコーディネート</h4>
                 <p>モデル情報： {{ $coordinate->user->height }}cm / {{ $coordinate->user->getGenderLabel($coordinate->user->gender) }}</p>

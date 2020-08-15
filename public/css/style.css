@@ -49,11 +49,27 @@ p.nomal{
     padding: 2em;
 }
 
+.img-square-show-lg{
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+    height: 600px;
+    margin-bottom: 1rem;
+}
+
+.img-square-show-sm{
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+    height: 500px;
+    margin-bottom: 1rem;
+}
+
 .img-square-show{
     object-fit: cover;
     object-position: center;
     width: 100%;
-    height: 650px;
+    height: 400px;
     margin-bottom: 1rem;
 }
 
@@ -111,18 +127,18 @@ p.nomal{
 }
 
 .user-icon-user{
-    height: 105px;
-    width: 105px;
+    height: 70px;
+    width: 70px;
 }
 
 .user-icon-profile{
-    height: 165px;
-    width: 165px;
+    height: 125px;
+    width: 125px;
 }
 
 .user-icon-edit{
-    height: 150px;
-    width: 150px;
+    height: 100px;
+    width: 100px;
 }
 
 .user-icon-user-tab{

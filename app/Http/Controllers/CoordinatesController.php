@@ -88,7 +88,6 @@ class CoordinatesController extends Controller
         
         // ここまで大阪の天気の変数
         
-    
         $data = [
                 'coordinates' => $coordinates,
                 
@@ -114,11 +113,7 @@ class CoordinatesController extends Controller
                 'o_temp_min' => $o_temp_min,
                 'o_temp_max' => $o_temp_max,
         ];
-            
-            
-           
         return view('welcome', $data, $data_timeline);
-        
     }
     
     public function show($id){
@@ -163,7 +158,6 @@ class CoordinatesController extends Controller
         $path = Storage::disk('s3')->putFile('coordinates/'.\Auth::id(), $file, 'public');
         
         $items = $request->items;
-        
         
         $coordinate = Coordinate::create([
             'user_id' => \Auth::user()->id,
