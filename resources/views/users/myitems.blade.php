@@ -20,7 +20,7 @@
     <!--投稿した画像-->
     <div class="row">
     @foreach($items as $item)
-        <div class="col-lg-3 col-md-4 col-sm-6 offset-sm-0 col-8 offset-2 mb-4">
+        <div class="col-lg-3 col-md-4 col-sm-6 offset-sm-0 col-10 offset-1 mb-4">
             <div class="card">
                 <a href="{{ route('items.show', ['item' => $item->id]) }}">
                     <img src= "{{ Storage::disk('s3')->url($item->item_image_url) }}" alt="item-image" class="img-square">
