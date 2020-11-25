@@ -7,7 +7,7 @@
 <div class="row">
     @include('users.nab_tabs')
     
-    <div class="create-coordinate mt-5 mb-5">
+    <div class="create-coordinate mt-5 mb-5 mx-auto">
         @if($user->id === Auth::id())
             {!! link_to_route('items.create', 'アイテムを保管', ['type' => 'button'], ['class' => 'btn btn-primary btn-lg']) !!}
         @endif
