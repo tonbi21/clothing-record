@@ -7,7 +7,7 @@
 <div class="row">
     @include('users.nab_tabs')
     
-    <div class="create-coordinate text-center mt-5 mb-5">
+    <div class="create-coordinate  mt-5 mb-5">
         @if($user->id === Auth::id())
             {!! link_to_route('coordinates.create', 'コーディネートを投稿', ['type' => 'button'], ['class' => 'btn btn-primary btn-lg']) !!}
         @endif
@@ -57,7 +57,4 @@
     </div>
     
 </div>
-
-
-
 @endsection

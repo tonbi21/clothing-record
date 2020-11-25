@@ -36,16 +36,15 @@
                                 <div class="form mt-5 mb-5 items">
                                     {!! Form::label('item', '着用アイテム', ['class' => 'control-label']) !!}
                                     <select class="form-control item-form mb-3" name="items[]">
-                                        
+                                        <option value ="">選択してください</option>
                                         @foreach($items as $item)
-                                            <option value ="">選択してください</option>
                                             <option value = "{{ $item->id }}" >{{ $item->id }}【{{ $item->brand }}】{{ $item->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
                                 <div class="btn btn-secondary mb-5" id="add-form">アイテムを追加</div>
                             @endif
-                            
+    
                             <div class="form mb-5">
                                 {!! Form::label('coordinate_type', 'シーズン', ['class' => 'control-label']) !!}
                                 {!! Form::select('coordinate_type', App\Coordinate::$coordinate_types, 0, ['class' => 'form-control']) !!}

@@ -65,6 +65,8 @@ p.nomal{
     margin-bottom: 1rem;
 }
 
+
+
 .img-square-show{
     object-fit: cover;
     object-position: center;
@@ -149,4 +151,8 @@ p.nomal{
 .user-icon-nav{
     height: 55px;
     width: 55px;
+}
+
+.create-coordinate{
+    margin: 0 auto;
 }
