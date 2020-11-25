@@ -14,7 +14,6 @@
     </div>
     
 
-    
     <!--投稿した画像-->
     <div class="row">
     @foreach($items as $item)
