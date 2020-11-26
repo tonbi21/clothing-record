@@ -2,7 +2,7 @@
 
 <nav class="navbar navbar-expand navbar-light bg-light">
     <a class="navbar-brand" href="/">
-      <h1 class="title">Clore</h1>
+      <h1 class="title">Clothing Record</h1>
     </a>
     
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-bar" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
