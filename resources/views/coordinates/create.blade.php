@@ -38,7 +38,7 @@
                                     <select class="form-control item-form mb-3" name="items[]">
                                         <option value ="">選択してください</option>
                                         @foreach($items as $item)
-                                            <option value = "{{ $item->id }}" >{{ $item->id }}【{{ $item->brand }}】{{ $item->name }}</option>
+                                            <option value = "{{ $item->id }}" >【{{ $item->brand }}】{{ $item->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>

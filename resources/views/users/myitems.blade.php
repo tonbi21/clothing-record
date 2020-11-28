@@ -15,7 +15,6 @@
     
 
     <!--投稿した画像-->
-    <div class="row">
     @foreach($items as $item)
         <div class="col-lg-3 col-md-4 col-sm-6 offset-sm-0 col-10 offset-1 mb-4">
             <div class="card">
@@ -39,15 +38,13 @@
                     </div>
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">#{{ $item->getCategoryLabel($item->category_id) }}</li>
+                    <li class="list-group-item">＃{{ $item->getCategoryLabel($item->category_id) }}</li>
                 </ul>
                 
             </div>
         
         </div>
     @endforeach
-    </div>
-    
 </div>
 
 
