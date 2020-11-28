@@ -13,6 +13,9 @@
         @endif
     </div>
     
+    <!--空白-->
+    <div class="col-12">
+    </div>
 
     <!--投稿した画像-->
     @foreach($items as $item)
